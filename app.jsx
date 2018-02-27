@@ -66,14 +66,18 @@ class Stopwatch extends React.Component{
     });
   }
   onReset() {
+    this.setState({
+      elapsedTime: 0,
+      previousTime: Date.now(),
+    });
   }
 
   render() {
-    
+    const seconds = Math.floor(this.state.elapsedTime / 1000);    
     return (
       <div className="stopwatch">
         <h2>Stopwatch</h2>
-	<div className="stopwatch-time">0</div>
+	<div className="stopwatch-time">{seconds}</div>
 	{ this.state.running ? 
 	  <button onClick={this.onStop}>Stop</button> 
 	  : 
